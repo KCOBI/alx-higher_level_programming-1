@@ -8,7 +8,3 @@ def uppercase(str):
         else:
             last += char
     print("{}".format(last))
-
-
-uppercase("best")
-uppercase("Best School 98 Battery street")
