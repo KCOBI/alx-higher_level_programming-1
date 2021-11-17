@@ -7,4 +7,8 @@ def uppercase(str):
             last += chr(ord(char)-32)
         else:
             last += char
-    print(last)
+    print("{}".format(last))
+
+
+uppercase("best")
+uppercase("Best School 98 Battery street")
