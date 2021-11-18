@@ -1,10 +1,17 @@
 #!/usr/bin/python3
 
+
 def uppercase(str):
-    last = ''
+    result = ''
     for char in str:
         if ord(char) >= 97 and ord(char) <= 122:
-            last += chr(ord(char)-32)
+            result += chr(ord(char) - 32)
         else:
-            last += char
-    print("{}".format(last))
+            result += char
+    print("{:s}".format(result))
+
+uppercase = __import__('8-uppercase').uppercase
+
+uppercase("best")
+uppercase("Bl 98 Battery street")
+
