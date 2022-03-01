@@ -20,3 +20,4 @@ VALUES
 INSERT INTO second_table
 VALUES
     (4 , 'George' , 8);
+
