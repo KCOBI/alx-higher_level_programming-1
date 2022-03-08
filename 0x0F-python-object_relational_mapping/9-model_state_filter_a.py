@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" This is a script that lists all State objects that contain the letter a from the database hbtn_0e_6_usa
+"""
 import sys
 from model_state import State, Base
 from sqlalchemy import (create_engine)
@@ -6,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 def main():
+    """ script that lists all State objects that contain the letter a from the database hbtn_0e_6_usa"""
     session = sessionmaker()
 
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
