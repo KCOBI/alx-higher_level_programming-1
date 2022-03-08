@@ -11,7 +11,7 @@ def main():
     dbb = MySQLdb.connect(user=argv[1], port=3306, host='localhost',
                           passwd=argv[2], db=argv[3])
     cs = dbb.cursor()
-    num = cs.execute("""select * from states""")
+    num = cs.execute("""SELECT * FROM states ORDER BY id""")
     for i in range(num):
         print(cs.fetchone())
 
