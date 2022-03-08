@@ -7,6 +7,12 @@ Base = declarative_base()
 
 
 class State(Base):
+    """this base have
+        name = states
+        id = intigr auto incriment and unique
+        primary key 
+        name = string of 128 caracter and not nullable 
+    """
     __tablename__ = "states"
     id = Column(Integer(), autoincrement=True, unique=True,
                 primary_key=True, nullable=False)
