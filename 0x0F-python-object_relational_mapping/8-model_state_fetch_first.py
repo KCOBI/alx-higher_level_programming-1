@@ -19,7 +19,7 @@ def main():
     local_session = session(bind=engine)
     retrived_state = local_session.query(State).first()
     if not retrived_state:
-        print("Nothing\n")
+        print("Nothing")
         return
 
     i = retrived_state
