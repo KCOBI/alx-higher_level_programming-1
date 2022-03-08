@@ -1,22 +1,33 @@
 #!/usr/bin/python3
-"""this is a script that changes the name of a State object from the database hbtn_0e_6_usa """
-from multiprocessing.sharedctypes import synchronized
-import sys
-from model_state import State, Base
-from sqlalchemy import (create_engine)
+"""Module 12-model_state_update_id_2
+Changes the name of a state with id equal to 2, to 'New Mexico'
+"""
+from sys import argv
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
 def main():
-    """this is a script that changes the name of a State object from the database hbtn_0e_6_usa """
-    session = sessionmaker()
-
+    """Program starts here.
+    Loads a State object with id equal to 2, updates its name to 'New Mexico'
+    and saves it to the database. If the state couldn't be found, the program
+    exits."""
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+        argv[1], argv[2], argv[3]), pool_pre_ping=True)
+
     Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    state = session.query(State).get(2)
+    #  Update object (row) only if it exists
+    if state:
+        state.name = 'New Mexico'
+        session.commit()
+
+    session.close()
 
 
-    local_session = session(bind=engine)
-    retrived_state = local_session.query(
-        State).filter(State.id == 2).update({State.name: "New Mexico"})
-    local_session.commit()
-if __name__ = "__main__":
+if __name__ == "__main__":
     main()
