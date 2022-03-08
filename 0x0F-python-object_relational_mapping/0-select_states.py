@@ -10,11 +10,10 @@ def main():
     """
     dbb = MySQLdb.connect(user=argv[1], port=3306, host='localhost',
                           passwd=argv[2], db=argv[3])
-    cs = dbb.cursor()
-    num = cs.execute("""SELECT * FROM states ORDER BY id""")
-    for i in range(num):
-        print(cs.fetchone())
-
+    c = dbb.cursor()
+    c.execute("SELECT * FROM states ORDER BY id")
+    for i in c.fetchall():
+        print(i)
 
 if __name__ == "__main__":
     main()
