@@ -1,29 +1,31 @@
 #!/usr/bin/python3
-"""this programm will select the first State object from the given database
-    """
-import sys
-from model_state import State, Base
-from sqlalchemy import (create_engine)
+"""Module 8-model_state_fetch_first
+Fetches the first row in the states table
+of the database passed as argument
+"""
+from sys import argv
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
 
 
 def main():
-    """this will execute the code we given which will assign the data to crete engine .....
-    """    
-    session = sessionmaker()
-
+    """Program starts here.
+    Using SQLAlchemy, the 'states' table is loaded and
+    the first entry in the table is printed. If there's no row,
+    'Nothing' is printed"""
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+        argv[1], argv[2], argv[3]), pool_pre_ping=True)
     Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-    local_session = session(bind=engine)
-    retrived_state = local_session.query(State).first()
-    if not retrived_state:
+    first_state = session.query(State).first()
+
+    if first_state:
+        print(str(first_state.id) + ": " + first_state.name)
+    else:
         print("Nothing")
-        return
-
-    i = retrived_state
-    print("{}: {}".format(i.id, i.name))
 
 
 if __name__ == "__main__":
