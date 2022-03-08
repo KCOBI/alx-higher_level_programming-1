@@ -1,25 +1,32 @@
 #!/usr/bin/python3
-"""this proggram will print all rows from given table and database 
-    """
-import sys
-from model_state import State, Base
-from sqlalchemy import (create_engine)
+"""Module 7-model_state_fetch_all
+Uses sqlalchemy to fetch all rows and
+generate objects from them from the table 'state'
+"""
+from sys import argv
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
 
 
 def main():
-    session = sessionmaker()
-
+    """
+    Program starts here. Using SQLAlchemy, connection to the
+    database is established and all rows in the table 'states'
+    are fetched and displayed.
+    """
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+        argv[1], argv[2], argv[3]), pool_pre_ping=True)
     Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-    local_session = session(bind=engine)
-    retrived_state = local_session.query(State).all()
+    all_states = session.query(State).order_by('id').all()
 
-    for i in retrived_state:
-        print("{}: {}".format(i.id, i.name))
+    for state in all_states:
+        print(str(state.id) + ": " + state.name)
+    session.close()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
