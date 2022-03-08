@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""this will select states from user
+"""this will select states from user his will select states from user his will select states from user
     """
 import MySQLdb
 from sys import argv
