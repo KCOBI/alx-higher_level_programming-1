@@ -1,3 +1,3 @@
 #!/bin/bash
 # this will sed the DELETE response
-curl -X DELETE $1
+curl --request -X DELETE $1
