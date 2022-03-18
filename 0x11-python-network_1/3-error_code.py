@@ -12,13 +12,9 @@ from urllib.request import urlopen
 
 if __name__ == "__main__":
     url = argv[1]
-    data = {"email": argv[1]}
-    data = urlencode(data)
-    data = data.encode("UTF-8")
-    full_url = Request(url, data)
     try:
-        with urlopen(full_url) as f:
-            print(f.read().decode("UTF-8"))
+        with urlopen(url) as f:
+            print(f.read().decode("utf-8"))
     except HTTPError as e:
         print("Error code:", e.code)
     except URLError as e:
