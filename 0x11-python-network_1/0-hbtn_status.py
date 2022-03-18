@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 """this module will  fetches https://alx-intranet.hbtn.io/status"""
