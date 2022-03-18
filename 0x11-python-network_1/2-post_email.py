@@ -1,10 +1,17 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-"""this module will return the reque    st id of response"""
+"""use post methode to ask server with given parameter"""
 
 from urllib.request import urlopen
+from urllib.parse import urlencode
+from urllib.request import Request
 from sys import argv
 
-with urlopen(argv[1]) as data:
-    print(data.headers['X-Request-Id'])
+url = argv[1]
+data = {"email": argv[2]}
+data = urlencode(data)
+data = data.encode("UTF-8")
+full_url = Request(url, data)
+with urlopen(full_url) as f:
+    print(f.read().decode("UTF-8"))
