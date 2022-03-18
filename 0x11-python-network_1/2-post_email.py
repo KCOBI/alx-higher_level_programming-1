@@ -11,7 +11,7 @@ from sys import argv
 url = argv[1]
 data = {"email": argv[2]}
 data = urlencode(data)
-data = data.encode("UTF-8")
+data = data.encode("utf-8")
 full_url = Request(url, data)
 with urlopen(full_url) as f:
-    print(f.read().decode("UTF-8"))
+    print(f.read().decode("utf-8"))
