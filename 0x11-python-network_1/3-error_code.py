@@ -1,16 +1,12 @@
 #!/usr/bin/python3
+"""Use requests package to make a get request to given URL
 """
-Take in a URL, send a request to URL, and dispaly body of response decoded in
-utf-8. Manage urllib's error exceptions.
-"""
-import sys
-import urllib.request
-import urllib.error
+import requests
 
 if __name__ == "__main__":
-    req = urllib.request.Request(sys.argv[1])
-    try:
-        with urllib.request.urlopen(req) as res:
-            print(res.read().decode('utf-8'))
-    except urllib.error.URLError as e:
-        print("Error code: {}".format(e.code))
+    url = "https://intranet.hbtn.io/status"
+    r = requests.get(url)
+    print("Body response:")
+    print("\t- type: {}".format(type(r.text)))
+    print("\t- content: {}".format(r.text))
+    
