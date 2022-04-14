@@ -40,7 +40,8 @@ request(option, function (err, res, body) {
 
   userids.forEach(element => {
     if (final[element.toString()] === 0) {
-      delete final[element.toString()];
+      console.log('smaking');
+      // final[element.toString()];
     }
   });
 });
