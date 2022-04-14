@@ -36,12 +36,12 @@ request(option, function (err, res, body) {
       final[element.userId.toString()]++;
     }
   });
-  console.log(final);
 
   userids.forEach(element => {
     if (final[element.toString()] === 0) {
-      console.log('smaking');
-      // final[element.toString()];
+      delete final[element.toString()];
     }
   });
+
+  console.log(final);
 });
