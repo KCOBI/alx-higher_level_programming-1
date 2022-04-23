@@ -1,3 +1,4 @@
-$('div#red_header').on('click', function () {
-  $('header').addClass('red');
+$ ('DIV#red_header').click (function (e) {
+  e.preventDefault ();
+  $ ('header').addClass ('red');
 });

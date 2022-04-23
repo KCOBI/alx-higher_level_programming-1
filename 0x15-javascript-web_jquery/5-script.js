@@ -1,3 +1,4 @@
-$('div#add_item').on('click', function () {
-  $('ul.my_list').append('<LI>Item</LI>');
+$ ('DIV#add_item').click (function (e) {
+  e.preventDefault ();
+  $ ('ul.my_list').append ('<li>Item</li>');
 });
